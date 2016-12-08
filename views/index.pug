@@ -1,6 +1,8 @@
 html
 	head
-		title we-Trippin'!
+		title weTrippin'!
+		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
 		script.
 			$(document).ready(function () {
 				$('#submit').click(function(event) {
@@ -10,7 +12,10 @@ html
 					}
 				});
 			});
+
 	body
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
 		h1 Let's start trippin'
 		form(action='/login' method='post')
 					label email
@@ -23,6 +28,16 @@ html
 					a(href='/register') Still not Trippin'? Join us!
 
 		h3#error-message= message
+
+		footer.page-footer.grey.darken-3
+			div.container
+				div.row
+					div.col.l6.s12
+						h5.white-text weTrippin'
+						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+			div.footer-copyright
+				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+
 
 		script(src="/resources/js/jquery-3.1.1.min.js")
 		script(src="/resources/js/materialize.min.js")

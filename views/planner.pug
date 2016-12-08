@@ -1,26 +1,34 @@
 html
 	head
-		title we-Plannin'
+		title wePlannin'
 		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+
 	body
-		nav
-			h2 This is all youu! 
-			ul
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
+			ul#nav-mobile.right.hide-on-med-and-down
 				li
 					a(href='/profile') Profile
+				li
 					a(href='/logout') Log out
-					
-		h1 we-Plannin'
-		#map
-		script.
-			var map;
-			function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: 52.399067, lng: 6.042480},
-			zoom: 4
-				});
-				}
+
+		h1 wePlannin'
+
+		div#map
+			input(type='button', value='Delete', onclick='DeleteMarkers()')
+
+		footer.page-footer.grey.darken-3
+			div.container
+				div.row
+					div.col.l6.s12
+						h5.white-text weTrippin'
+						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+			div.footer-copyright
+				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
 
 	script(src="/resources/js/jquery-3.1.1.min.js")
 	script(src="/resources/js/materialize.min.js")
+	script(src="/resources/js/custom.js")
+	script(src="/resources/js/maps.js")
 	script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAelmKfY0T3R_L35-UZ75yI-8QXccnZtp8&callback=initMap', async='', defer='')

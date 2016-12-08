@@ -2,14 +2,28 @@ html
 	head
 		title My Profile
 		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
-
+		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
 	body
-		nav
-			h2 This is all youu! 
-			ul
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
+			ul#nav-mobile.right.hide-on-med-and-down
+				li
+					a(href='/planner') wePlannin'
 				li
 					a(href='/logout') Log out
-		a(href='/planner') we-Plannin'
+		div.container
+			h3.center-align Welcome #{user.name} !
+
+
+		footer.page-footer.grey.darken-3
+			div.container
+				div.row
+					div.col.l6.s12
+						h5.white-text weTrippin'
+						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+			div.footer-copyright
+				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+
 
 	script(src="/resources/js/jquery-3.1.1.min.js")
 	script(src="/resources/js/materialize.min.js")

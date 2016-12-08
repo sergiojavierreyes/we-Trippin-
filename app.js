@@ -32,8 +32,7 @@ let User = db.define('user', {
 })
 
 let Itinerary = db.define('itinerary', {
-	lat: sequelize.STRING,
-	long: sequelize.STRING
+	coordinates: sequelize.STRING
 })
 
 let Diary = db.define('diary', {
@@ -54,7 +53,7 @@ app.get('/profile', function (request, response) {
 		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
 	} else {
 		response.render('profile', {
-			message: user
+			user: user
 		})
 	}
 })
