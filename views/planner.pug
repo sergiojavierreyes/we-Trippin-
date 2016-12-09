@@ -3,6 +3,7 @@ html
 		title wePlannin'
 		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
 		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	body
 		nav.nav-wrapper.grey.darken-3
@@ -14,9 +15,25 @@ html
 					a(href='/logout') Log out
 
 		h1 wePlannin'
+		.right-align
+			a.newday.btn-floating.btn-large.waves-effect.waves-light.red
+				i.material-icons add
+			br
+			a.removeday.btn-floating.btn-large.waves-effect.waves-light.red
+				i.material-icons delete
 
-		div#map
-			input(type='button', value='Delete', onclick='DeleteMarkers()')
+		div.container#header
+			ul.collapsible(data-collapsible='accordion')
+				li
+					.collapsible-header
+						| Day 1
+					.collapsible-body
+						form(action='/dailyPlan' method='post')
+							label Anything to useful to keep in mind
+							textarea#textarea1.materialize-textarea
+							input(type='submit')
+						#map
+							input(type='button', value='Delete', onclick='DeleteMarkers()')
 
 		footer.page-footer.grey.darken-3
 			div.container

@@ -32,7 +32,8 @@ let User = db.define('user', {
 })
 
 let Itinerary = db.define('itinerary', {
-	coordinates: sequelize.STRING
+	coordinates: sequelize.STRING,
+	resources: sequelize.STRING
 })
 
 let Diary = db.define('diary', {
@@ -109,10 +110,6 @@ app.get('/register', (req,res) => {
 	res.render('register')
 })
 
-app.get('/planner', (req,res) => {
-	res.render('planner')
-})
-
 app.post('/register', (req,res) => {
 
 	bcrypt.hash(req.body.password, 5, function(err,hash){
@@ -125,6 +122,14 @@ app.post('/register', (req,res) => {
 		})
 		res.redirect('/')
 	})
+})
+
+app.get('/planner', (req,res) => {
+	res.render('planner')
+})
+
+app.post('/dailyPlan', (req,res) => {
+	res.redirect('planner')
 })
 
 

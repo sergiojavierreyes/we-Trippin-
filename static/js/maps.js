@@ -3,7 +3,7 @@
 
 	function initMap() {
 		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 4,
+			zoom: 6,
 			center: {lat: 52.3702, lng: 4.8952 }
 		});
 
@@ -51,19 +51,3 @@ function DeleteMarker(id) {
 	}
 }
 };
-
-
-
-
-
-	// google.maps.event.addListener(map, 'click', function(event) {
-	//    placeMarker(event.latLng);
-	// });
-
-
-
-	// function placeMarker(location) {
-	//     var marker = new google.maps.Marker({
-	//         position: location, 
-	//         map: map
-	//     });
