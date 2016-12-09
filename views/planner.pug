@@ -15,25 +15,20 @@ html
 					a(href='/logout') Log out
 
 		h1 wePlannin'
-		.right-align
-			a.newday.btn-floating.btn-large.waves-effect.waves-light.red
-				i.material-icons add
-			br
-			a.removeday.btn-floating.btn-large.waves-effect.waves-light.red
-				i.material-icons delete
+		div.container
 
-		div.container#header
-			ul.collapsible(data-collapsible='accordion')
-				li
-					.collapsible-header
-						| Day 1
-					.collapsible-body
-						form(action='/dailyPlan' method='post')
-							label Anything to useful to keep in mind
-							textarea#textarea1.materialize-textarea
-							input(type='submit')
-						#map
-							input(type='button', value='Delete', onclick='DeleteMarkers()')
+
+		div.container
+			form(action='/dailyPlan' method='post')
+				label  Name your trip!
+				input(type='text' name='name')
+				label  How many days!
+				input(type='text' name='days')
+				label  Anything to useful to keep in mind
+				textarea#textarea1.materialize-textarea(name='resources')
+				input(type='submit')
+			#map
+				input(type='button', value='Delete', onclick='DeleteMarkers()')
 
 		footer.page-footer.grey.darken-3
 			div.container

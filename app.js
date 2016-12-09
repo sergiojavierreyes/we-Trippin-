@@ -32,13 +32,19 @@ let User = db.define('user', {
 })
 
 let Itinerary = db.define('itinerary', {
-	coordinates: sequelize.STRING,
-	resources: sequelize.STRING
+	title: sequelize.STRING,
+	days: sequelize.INTEGER,
+	resources: sequelize.TEXT
 })
 
 let Diary = db.define('diary', {
 	thoughts: sequelize.STRING,
 	photo: sequelize.STRING
+})
+
+let Places = db.define('places', {
+	lat: sequelize.STRING,
+	long: sequelize.STRING
 })
 
 app.get('/', function (request, response) {
@@ -78,10 +84,10 @@ app.post('/login', bodyParser.urlencoded({extended: true}), function (request, r
 		var hash = user.password
 
 		bcrypt.compare(request.body.password, hash, (err, res) => { 
-		if (user !== null && res == true) {
-			request.session.user = user
-			response.redirect('/profile')
-			console.log(hash)
+			if (user !== null && res == true) {
+				request.session.user = user
+				response.redirect('/profile')
+				console.log(hash)
 
 			// (user !== null && request.body.password === user.password) {
 			// request.session.user = user;
@@ -129,12 +135,18 @@ app.get('/planner', (req,res) => {
 })
 
 app.post('/dailyPlan', (req,res) => {
-	res.redirect('planner')
+	Itinerary.create({
+		title: req.body.name,
+		days: req.body.days,
+		resources: req.body.resources
+	}).then ((itinerary)=>{
+		res.redirect('planner')
+	})
 })
 
 
 
-db.sync({force: false}).then(db => {
+db.sync({force: true}).then(db => {
 	console.log('We synced bruh!')
 })
 

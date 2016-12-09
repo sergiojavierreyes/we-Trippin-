@@ -1,11 +1,12 @@
-	var markers = [];
-	var uniqueId = 1;
 
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 6,
-			center: {lat: 52.3702, lng: 4.8952 }
-		});
+var markers = [];
+var uniqueId = 1;
+
+function initMap() {
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 6,
+		center: {lat: 52.3702, lng: 4.8952 }
+	});
 
 	//Attach click event handler to the map.
 	google.maps.event.addListener(map, 'click', function (e) {
@@ -35,7 +36,11 @@
 
 	//Add marker to the array.
 	markers.push(marker);
-});
+	console.log("Hi am LAT : " +location.lat())
+	console.log("Hi am LONG : " +location.lng())
+
+	
+
 }
 function DeleteMarker(id) {
 	//Find and remove the marker from the Array
@@ -50,4 +55,5 @@ function DeleteMarker(id) {
 
 	}
 }
+
 };
