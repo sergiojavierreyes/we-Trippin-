@@ -5,14 +5,12 @@ const app = express()
 const pg = require ('pg')
 const bodyParser = require ('body-parser')
 const session = require('express-session')
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const router = express.Router()
 
-app.set('view engine', 'pug')
-app.set('views', __dirname + "/views")
-
-app.use('/resources',express.static(__dirname + '/static'))
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(session({
+//middleware
+router.use(bodyParser.urlencoded({extended:true}))
+router.use(session({
 	secret: 'random stuff',
 	resave: true,
 	saveUninitialized: false
@@ -47,25 +45,21 @@ let Places = db.define('places', {
 	lng: sequelize.FLOAT
 })
 
-app.get('/', function (request, response) {
+
+//sync database
+db.sync({force: true}).then(db => {
+	console.log('We synced bruh!')
+})
+
+//routes
+router.get('/', function (request, response) {
 	response.render('index', {
 		message: request.query.message,
 		user: request.session.user
 	})
 });
 
-app.get('/profile', function (request, response) {
-	var user = request.session.user;
-	if (user === undefined) {
-		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
-	} else {
-		response.render('profile', {
-			user: user
-		})
-	}
-})
-
-app.post('/login', bodyParser.urlencoded({extended: true}), function (request, response) {
+router.post('/login', bodyParser.urlencoded({extended: true}), function (request, response) {
 	if(request.body.email.length === 0) {
 		response.redirect('/?message=' + encodeURIComponent("Please fill out your email address."));
 		return;
@@ -103,7 +97,7 @@ app.post('/login', bodyParser.urlencoded({extended: true}), function (request, r
 	});
 });
 
-app.get('/logout', function (request, response) {
+router.get('/logout', function (request, response) {
 	request.session.destroy(function(error) {
 		if(error) {
 			throw error;
@@ -112,64 +106,6 @@ app.get('/logout', function (request, response) {
 	})
 });
 
-app.get('/register', (req,res) => {
-	res.render('register')
-})
 
-app.post('/register', (req,res) => {
+module.exports = router
 
-	bcrypt.hash(req.body.password, 5, function(err,hash){
-		console.log(hash)
-
-		User.create({
-			name: req.body.name,
-			email: req.body.email,
-			password: hash
-		})
-		res.redirect('/')
-	})
-})
-
-app.get('/planner', (req,res) => {
-	res.render('planner')
-})
-
-app.post('/dailyPlan', (req,res) => {
-	Itinerary.create({
-		title: req.body.name,
-		days: req.body.days,
-		resources: req.body.resources
-	}).then ((itinerary)=>{
-		res.send('success')
-	})
-})
-
-app.post('/dailyLocation', (req,res) => {
-	Places.create({
-		lat: req.body.lat,
-		lng: req.body.lng
-	}).then ((places)=>{
-		res.send(' dailyLocation Success!')
-	})
-})
-
-app.post('/deleteLocation', (req,res)=>{
-	Places.find({
-		where: {
-			lat: req.body.lat,
-			lng: req.body.lng
-		}
-	}).then ((beGone)=>{
-		beGone.destroy()
-	}).then (function(){
-		res.send('succesfully Destroyed')
-	})
-})
-
-db.sync({force: true}).then(db => {
-	console.log('We synced bruh!')
-})
-
-app.listen(1337,()=>{
-	console.log("1337 IAM ALL THE WAY UP!")
-})

@@ -11,10 +11,13 @@ html
 		form(action='/register', method='POST')
 			input(type='text', name='name' placeholder='Name')
 			input(type='email', name='email' placeholder='Email')
-			input(type='password', name='password' placeholder='Password')
+			input#password1(type='password',pattern='.{8,}' title='8 characters minimum', name='password')
 			br 
 			br
 			input(require type='submit', value='Sign Up')
+				
+		div.white-text.center
+			h5#err-message= message
 
 		footer.page-footer.grey.darken-3
 			div.container
