@@ -43,8 +43,8 @@ let Diary = db.define('diary', {
 })
 
 let Places = db.define('places', {
-	lat: sequelize.STRING,
-	long: sequelize.STRING
+	lat: sequelize.FLOAT,
+	lng: sequelize.FLOAT
 })
 
 app.get('/', function (request, response) {
@@ -140,11 +140,31 @@ app.post('/dailyPlan', (req,res) => {
 		days: req.body.days,
 		resources: req.body.resources
 	}).then ((itinerary)=>{
-		res.redirect('planner')
+		res.send('success')
 	})
 })
 
+app.post('/dailyLocation', (req,res) => {
+	Places.create({
+		lat: req.body.lat,
+		lng: req.body.lng
+	}).then ((places)=>{
+		res.send(' dailyLocation Success!')
+	})
+})
 
+app.post('/deleteLocation', (req,res)=>{
+	Places.find({
+		where: {
+			lat: req.body.lat,
+			lng: req.body.lng
+		}
+	}).then ((beGone)=>{
+		beGone.destroy()
+	}).then (function(){
+		res.send('succesfully Destroyed')
+	})
+})
 
 db.sync({force: true}).then(db => {
 	console.log('We synced bruh!')

@@ -1,6 +1,10 @@
+$(document).ready(function(){
+	console.log('MAP MAP MAP')
+});
 
 var markers = [];
 var uniqueId = 1;
+
 
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -11,14 +15,24 @@ function initMap() {
 	//Attach click event handler to the map.
 	google.maps.event.addListener(map, 'click', function (e) {
 
-	//Determine the location where the user has clicked.
-	var location = e.latLng;
 
-	//Create a marker and placed it on the map.
-	var marker = new google.maps.Marker({
-		position: location,
-		map: map
-	});
+		//Determine the location where the user has clicked.
+		var location = e.latLng;
+		console.log(location)
+
+		// Send to backend
+		$.post('/dailyLocation',{
+			lat: location.lat(),
+			lng: location.lng()
+		} ,(data)=>{
+			console.log("YOOO:" +data)
+		});
+
+		//Create a marker and placed it on the map.
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map
+		})
 
 	//Set unique id
 	marker.id = uniqueId;
@@ -26,20 +40,30 @@ function initMap() {
 
 	//Attach click event handler to the marker.
 	google.maps.event.addListener(marker, "click", function (e) {
-		var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
-		content += "<br /><input type = 'button' va;ue = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
+		var content = "<input id='deLocate' type = 'button' value = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
 		var infoWindow = new google.maps.InfoWindow({
 			content: content
+
+
 		});
 		infoWindow.open(map, marker);
-	});
 
+		console.log("DELETEDDD: " + location.lat())
+		$.post('/deleteLocation', {
+			lat: location.lat(),
+			lng: location.lng()
+		},(data)=>{
+			console.log("DELETEDDD: " + data)
+		})
+
+
+	});
+	
 	//Add marker to the array.
 	markers.push(marker);
-	console.log("Hi am LAT : " +location.lat())
-	console.log("Hi am LONG : " +location.lng())
 
-	
+})
+
 
 }
 function DeleteMarker(id) {
