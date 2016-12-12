@@ -1,7 +1,7 @@
 html
 	head
 		title wePlannin'
-		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/planner.css' type="text/css" rel="stylesheet")
 		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -33,7 +33,6 @@ html
 			#map
 
 
-
 		footer.page-footer.grey.darken-3
 			div.container
 				div.row
@@ -47,4 +46,4 @@ html
 	script(src="/resources/js/materialize.min.js")
 	script(src="/resources/js/custom.js")
 	script(src="/resources/js/maps.js")
-	script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAelmKfY0T3R_L35-UZ75yI-8QXccnZtp8&callback=initMap', async='', defer='')
+	script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAelmKfY0T3R_L35-UZ75yI-8QXccnZtp8&callback=initAutocomplete&libraries=places', async='', defer='')
