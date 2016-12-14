@@ -48,8 +48,18 @@ let Days = db.define('day', {
 	day: sequelize.TEXT
 })
 
-//define the relations
+//Define relations
+User.hasMany(Itinerary)
+Itinerary.belongsTo(User)
 
+User.hasMany(Places)
+Places.belongsTo(User)
+
+Itinerary.hasMany(Days);
+Days.belongsTo(Itinerary);
+
+Days.hasMany(Diary);
+Diary.belongsTo(Days);
 
 
 //routes
