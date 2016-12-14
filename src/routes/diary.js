@@ -8,7 +8,7 @@ const session = require('express-session')
 const bcrypt = require('bcrypt');
 const router = express.Router()
 
-
+//middleware
 router.use(bodyParser.urlencoded({extended:true}))
 router.use(session({
 	secret: 'random stuff',
@@ -31,7 +31,7 @@ let User = db.define('user', {
 
 let Itinerary = db.define('itinerary', {
 	title: sequelize.STRING,
-	days: sequelize.INTEGER,
+	days: sequelize.INTEGER
 })
 
 let Diary = db.define('diary', {
@@ -48,16 +48,16 @@ let Days = db.define('day', {
 	day: sequelize.TEXT
 })
 
-
-router.get('/profile', function (request, response) {
-	var user = request.session.user;
-	if (user === undefined) {
-		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
-	} else {
-		response.render('profile', {
-			user: user
-		})
-	}
+//Set routes
+router.get('/diary', (req,res)=>{
+		Days.findOne({
+		where: {
+			day: request.body.email
+		}
+	})
+	res.render('diary')
 })
+
+
 
 module.exports = router

@@ -20,11 +20,13 @@ let loginlogoutrouter = require (__dirname + '/routes/login')
 let registerrouter = require (__dirname + '/routes/register')
 let profilerouter = require (__dirname + '/routes/profile')
 let plannerrouter = require (__dirname + '/routes/planner')
+let diaryrouter = require (__dirname + '/routes/diary')
 
 app.use('/', loginlogoutrouter)
 app.use('/', registerrouter)
 app.use('/', profilerouter)
 app.use('/', plannerrouter)
+app.use('/', diaryrouter)
 
 app.listen(1337,()=>{
 	console.log("1337 IAM ALL THE WAY UP!")

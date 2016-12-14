@@ -29,10 +29,10 @@ let User = db.define('user', {
 	password: sequelize.STRING
 })
 
+
 let Itinerary = db.define('itinerary', {
 	title: sequelize.STRING,
 	days: sequelize.INTEGER,
-	resources: sequelize.TEXT
 })
 
 let Diary = db.define('diary', {
@@ -43,6 +43,10 @@ let Diary = db.define('diary', {
 let Places = db.define('places', {
 	lat: sequelize.FLOAT,
 	lng: sequelize.FLOAT
+})
+
+let Days = db.define('day', {
+	day: sequelize.TEXT
 })
 
 

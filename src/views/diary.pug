@@ -1,33 +1,21 @@
 html
 	head
-		title My Profile
+		title wePlannin'
+		link(href='/resources/css/planner.css' type="text/css" rel="stylesheet")
 		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
-		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	body
 		nav.nav-wrapper.grey.darken-3
 			h2.brand-logo weTrippin'
 			ul#nav-mobile.right.hide-on-med-and-down
 				li
+					a(href='/profile') Profile
+				li
 					a(href='/planner') wePlannin'
 				li
-					a(href='/diary') Diary
-				li
 					a(href='/logout') Log out
-		div.container
-			h3.center-align Welcome #{user.name} !	
-		.row
-			h5 Your trips
-			.col.s12.m7
-				.card
-					.card-image
-						img(src='/resources/media/travel.jpg')
-							|  
-						span.card-title Where to?
-						.card-content
-							p
-							| Let's get to planning!
-							.card-action
-								a(href='/planner') New trip!
+		
 
 		footer.page-footer.grey.darken-3
 			div.container
@@ -38,6 +26,6 @@ html
 			div.footer-copyright
 				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
 
-
 	script(src="/resources/js/jquery-3.1.1.min.js")
 	script(src="/resources/js/materialize.min.js")
+	script(src="/resources/js/custom.js")
