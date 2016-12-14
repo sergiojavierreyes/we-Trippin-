@@ -1,16 +1,20 @@
-$(document).ready(function(){
+$(document).ready(()=>{
 	console.log('DOM DOM DOM DOOOOOM')
 
-	$('#update').keyup(function(){
+	$('#update').keyup(()=>{
+		$('.inputfields').html('')
 		var searchField = $('#update').val()
-		var day= 'Day'
 		console.log(searchField)
 
-		// $.post('/dailyPlan', {data: searchField}, function(data){
-		// 	console.log(data)
-		// 	$('#searchbar').empty();
-		// 		console.log()
-		// 		$('#searchbar').append('<h5>' + day + '</h5>''<lable> Anything to useful to keep in mind </label>''<textarea id="textarea1"></textarea>')
+		for (var i = 0; i < searchField; i++) {
+			console.log("hoi")
+			$('.inputfields').append("<h5> Day " + (i+1) + "</h5><lable> Anything to useful to keep in mind </label><textarea id='area" + (i+1) + "'></textarea>")
+		}
+		// $.post('/addDays', {data: searchField}, (data)=>{
+		// 	$('#update').each(()=>{
+		// 		var extraDay = '<h5>' + day + '</h5><lable> Anything to useful to keep in mind </label><textarea id="textarea1"></textarea>'
+		// 		$('form').append(extraDay)
+		// 	})
 		// })
 	})
 });

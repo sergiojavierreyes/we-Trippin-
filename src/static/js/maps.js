@@ -124,7 +124,6 @@ markers.push(marker);
 
 })
 
-
 }
 function DeleteMarker(id) {
 //Find and remove the marker from the Array

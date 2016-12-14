@@ -69,6 +69,11 @@ router.post('/dailyLocation', (req,res) => {
 	})
 })
 
+router.post('/addDays', (req,res) => {
+ 	
+		res.send(' dailyLocation Success!')
+})
+
 router.post('/deleteLocation', (req,res)=>{
 	Places.find({
 		where: {
