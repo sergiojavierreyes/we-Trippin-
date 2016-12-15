@@ -3,7 +3,7 @@ $(document).ready(()=>{
 
 	$('#update').keyup(()=>{
 		$('.inputfields').html('')
-		var searchField = $('#update').val()
+		var searchField = $('input#update').val()
 		console.log(searchField)
 		for (var i = 0; i < searchField; i++) {
 			console.log("hoi")
@@ -11,10 +11,24 @@ $(document).ready(()=>{
 		}
 	})
 
-	
+	$('#dayForm').hide(()=>{
+		$('#update3').click((e)=>{
+			e.preventDefault()
+			$('#dayForm').show()
+
+			var tripName = $('#getName').val()
+			console.log(tripName) 
+
+			$.post('/dailyPlan', {dataName: tripName}, (data)=>{
+
+			})
+		})
+	})
+
 	$('#update2').click((e)=>{
 		e.preventDefault()
-
+		var tripName = $('#getName').val()
+		console.log(tripName) 
 		var newDay = []
 
 		var amount = $('.inputfields').children().length/2
@@ -24,7 +38,11 @@ $(document).ready(()=>{
 		}
 
 		console.log(newDay)
-		$.post('/addDays', {data: newDay}, (data)=>{
-			})
+		$.post('/addDays', {
+			data: newDay,
+			dataName: tripName
+		}, (data)=>{
+		})
 	})
+
 })

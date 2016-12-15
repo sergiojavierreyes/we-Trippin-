@@ -8,6 +8,8 @@ const session = require('express-session')
 const bcrypt = require('bcrypt');
 const router = express.Router()
 
+var db = require('../model/database');
+
 //middleware
 router.use(bodyParser.urlencoded({extended:true}))
 router.use(session({
@@ -16,48 +18,18 @@ router.use(session({
 	saveUninitialized: false
 }));
 
-//Define database structure
-let db = new sequelize('tripapp', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-	server:'localhost',
-	dialect: 'postgres'
-})
-
-//Create tables
-let User = db.define('user', {
-	name: {type: sequelize.STRING, unique: true},
-	email: {type: sequelize.STRING, unique: true},
-	password: sequelize.STRING
-})
-
-let Itinerary = db.define('itinerary', {
-	title: sequelize.STRING,
-	days: sequelize.INTEGER
-})
-
-let Diary = db.define('diary', {
-	thoughts: sequelize.STRING,
-	photo: sequelize.STRING
-})
-
-let Places = db.define('places', {
-	lat: sequelize.FLOAT,
-	lng: sequelize.FLOAT
-})
-
-let Days = db.define('day', {
-	day: sequelize.TEXT
-})
 
 //Set routes
 router.get('/diary', (req,res)=>{
-		Days.findOne({
-		where: {
-			day: request.body.email
-		}
+		db.Days.findAll({
+	}).then((days)=>{
+	res.render('diary', {data: days})
+		
 	})
-	res.render('diary')
 })
 
+router.post('/dailyThoughts', (req,res)=>{
 
+})
 
 module.exports = router

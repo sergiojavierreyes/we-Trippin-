@@ -15,7 +15,18 @@ html
 					a(href='/planner') wePlannin'
 				li
 					a(href='/logout') Log out
-		
+
+
+		h4.center-align How was it tho?
+		div.container
+			each thing in data
+				h3 #{thing.day}
+					form(action='/dailyThoughts' method='post')
+						label Any thoughts for this day?
+						input(type='text' name='name')
+						br
+						input(type='submit')
+
 
 		footer.page-footer.grey.darken-3
 			div.container

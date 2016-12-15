@@ -21,9 +21,12 @@ html
 
 
 		div.container
-			form(action='/dailyPlan' method='post')
+			form
 				label Name your trip!
-				input(type='text' name='name')
+				input#getName(type='text' name='name')
+				input#update3(type='submit')
+
+			form#dayForm
 				label How many days!
 				input#update(type='number' name='days')
 				br

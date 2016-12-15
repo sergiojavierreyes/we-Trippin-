@@ -7,6 +7,7 @@ const bodyParser = require ('body-parser')
 const session = require('express-session')
 const bcrypt = require('bcrypt');
 const router = express.Router()
+var db = require('../model/database');
 
 //middleware
 router.use(bodyParser.urlencoded({extended:true}))
@@ -15,19 +16,6 @@ router.use(session({
 	resave: true,
 	saveUninitialized: false
 }));
-
-//Define database structure
-let db = new sequelize('tripapp', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-	server:'localhost',
-	dialect: 'postgres'
-})
-
-//Create tables
-let User = db.define('user', {
-	name: {type: sequelize.STRING, unique: true},
-	email: {type: sequelize.STRING, unique: true},
-	password: sequelize.STRING
-})
 
 //routes
 router.get('/register', (req,res) => {
@@ -61,7 +49,7 @@ router.post('/register', (req,res) => {
 	bcrypt.hash(req.body.password, 5, function(err,hash){
 		console.log(hash)
 
-		User.create({
+		db.User.create({
 			name: req.body.name,
 			email: req.body.email,
 			password: hash

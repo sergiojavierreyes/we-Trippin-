@@ -7,6 +7,7 @@ const bodyParser = require ('body-parser')
 const session = require('express-session')
 const bcrypt = require('bcrypt');
 const router = express.Router()
+var db = require('../model/database');
 
 //middleware
 router.use(bodyParser.urlencoded({extended:true}))
@@ -16,44 +17,6 @@ router.use(session({
 	saveUninitialized: false
 }));
 
-//Define database structure
-let db = new sequelize('tripapp', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-	server:'localhost',
-	dialect: 'postgres'
-})
-
-//Create tables
-let User = db.define('user', {
-	name: {type: sequelize.STRING, unique: true},
-	email: {type: sequelize.STRING, unique: true},
-	password: sequelize.STRING
-})
-
-
-let Itinerary = db.define('itinerary', {
-	title: sequelize.STRING,
-	days: sequelize.INTEGER,
-})
-
-let Diary = db.define('diary', {
-	thoughts: sequelize.STRING,
-	photo: sequelize.STRING
-})
-
-let Places = db.define('places', {
-	lat: sequelize.FLOAT,
-	lng: sequelize.FLOAT
-})
-
-let Days = db.define('day', {
-	day: sequelize.TEXT
-})
-
-
-//sync database
-db.sync({force: true}).then(db => {
-	console.log('We synced bruh!')
-})
 
 //routes
 router.get('/', function (request, response) {
@@ -74,7 +37,7 @@ router.post('/login', bodyParser.urlencoded({extended: true}), function (request
 		return;
 	}
 
-	User.findOne({
+	db.User.findOne({
 		where: {
 			email: request.body.email
 		}
