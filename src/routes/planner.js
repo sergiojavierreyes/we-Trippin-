@@ -62,14 +62,12 @@ router.post('/addDays', (req,res) => {
 		}
 	}).then ((itinerary)=>{
 
-		console.log(itinerary)
-
 		var bodyLength = req.body.data
 		console.log(bodyLength)
-
-		for (var i = bodyLength.length - 1; i >= 0; i--) {
-
+		
+		for (var i = 0; i < bodyLength.length; i++) {
 			itinerary.createDay({
+				header: "Day" + [i + 1],
 				day: bodyLength[i]
 			})
 		}

@@ -37,10 +37,12 @@ $(document).ready(()=>{
 			newDay.push($('#area' + [i+1]).val())
 		}
 
+
 		console.log(newDay)
 		$.post('/addDays', {
 			data: newDay,
-			dataName: tripName
+			dataName: tripName,
+			dayTitle: dayName
 		}, (data)=>{
 		})
 	})

@@ -21,9 +21,12 @@ router.use(session({
 
 //Set routes
 router.get('/diary', (req,res)=>{
-		db.Days.findAll({
-	}).then((days)=>{
-	res.render('diary', {data: days})
+	db.Itinerary.findAll({
+		include: [{
+			model: db.Day
+		}]
+	}).then( post => {
+	res.render('diary', {data: post})
 		
 	})
 })

@@ -35,6 +35,7 @@ db.Place = DataBase.define('place', {
 })
 
 db.Day = DataBase.define('day', {
+	header: sequelize.TEXT,
 	day: sequelize.TEXT
 })
 

@@ -20,7 +20,9 @@ html
 		h4.center-align How was it tho?
 		div.container
 			each thing in data
-				h3 #{thing.day}
+				h3 #{thing.title}
+				each post in thing.day
+
 					form(action='/dailyThoughts' method='post')
 						label Any thoughts for this day?
 						input(type='text' name='name')
