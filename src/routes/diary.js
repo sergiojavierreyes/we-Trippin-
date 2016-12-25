@@ -26,13 +26,33 @@ router.get('/diary', (req,res)=>{
 			model: db.Day
 		}]
 	}).then( post => {
-	res.render('diary', {data: post})
+		res.render('diary', {data: post})
 		
 	})
 })
 
 router.post('/dailyThoughts', (req,res)=>{
 
+	var bodyLength = req.body.dayName
+	console.log("the titles are : " + bodyLength)
+
+		db.Day.findOne({
+			where: {
+				header: 'Day' + [i+1]
+			}
+
+		})
+	
+	.then((day)=>{
+		console.log("today is gonna be the day: " + day)
+		day.createDiary({
+			thoughts: req.body.inputName,
+			photo: req.body.inputFile
+		})
+
+		res.send('succes')
+	})
 })
+
 
 module.exports = router

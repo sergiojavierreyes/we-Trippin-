@@ -8,10 +8,6 @@ html
 			h2.brand-logo weTrippin'
 			ul#nav-mobile.right.hide-on-med-and-down
 				li
-					a(href='#test1') wePlannin'
-				li
-					a(href='#test2') Diary
-				li
 					a(href='/logout') Log out
 		div.container
 			h3.center-align Welcome #{user.name} !	
@@ -23,7 +19,9 @@ html
 						li.tab.col.s3
 							a(href='#test1') Plan a new trip
 						li.tab.col.s3
-							a(href='#test2') Your trips
+							a(href='#test2') Diary
+						li.tab.col.s3
+							a(href='#test3') Your trips!
 
 		div.container#test1.col.s12 
 			.col.s12.m7
@@ -50,6 +48,15 @@ html
 							| Keep it updated tho!
 							.card-action
 								a(href='/diary') How was it?
+
+		div.container#test3
+			.col.s6.offset-s6
+				span.flow-text
+					each all in everything
+						h3=all.title
+
+						each thing in all.days
+							p=thing.post
 
 		footer.page-footer.grey.darken-3
 			div.container

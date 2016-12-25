@@ -1,32 +1,20 @@
 html
 	head
 		Title Join the cool people!
-		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/index.css' type="text/css" rel="stylesheet")
 		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
 
 	body
-		nav.nav-wrapper.grey.darken-3
-			h2.brand-logo weTrippin'
-		h1 Trip with us!
-		form(action='/register', method='POST')
-			input(type='text', name='name' placeholder='Name')
-			input(type='email', name='email' placeholder='Email')
-			input#password1(type='password',pattern='.{8,}' title='8 characters minimum', name='password')
-			br 
-			br
-			input(require type='submit', value='Sign Up')
-				
-		div.white-text.center
-			h5#err-message= message
-
-		footer.page-footer.grey.darken-3
-			div.container
-				div.row
-					div.col.l6.s12
-						h5.white-text weTrippin'
-						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
-			div.footer-copyright
-				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+		main.valign-wrapper
+			span.container
+				h1.title.center-align Trip with us!
+				form(action='/register', method='POST')
+					input(type='text', name='name', placeholder='Name')
+					input(type='email', name='email', placeholder='Email')
+					input#password1(type='password',pattern='.{8,}' title='8 characters minimum', name='password',  placeholder='Password')
+					br 
+					br
+					input(require type='submit', value='Sign Up')
 
 	script(src="/resources/js/jquery-3.1.1.min.js")
 	script(src="/resources/js/materialize.min.js")

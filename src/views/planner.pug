@@ -11,8 +11,7 @@ html
 			ul#nav-mobile.right.hide-on-med-and-down
 				li
 					a(href='/profile') Profile
-				li
-					a(href='/diary') Diary
+
 				li
 					a(href='/logout') Log out
 
@@ -24,14 +23,14 @@ html
 			form
 				label Name your trip!
 				input#getName(type='text' name='name')
-				input#update3(type='submit')
+				input#update3(type='submit' onclick='Materialize.toast("Sick trip Name tho", 4000)')
 
 			form#dayForm
 				label How many days!
 				input#update(type='number' name='days')
 				br
 				div.inputfields
-				input#update2(type='submit')
+				input#update2(type='submit' onclick='Materialize.toast("Yaaaasss, days have been planned out fam", 4000)')
 			input#pac-input.controls(type='text', placeholder='Search Box')
 			#map
 

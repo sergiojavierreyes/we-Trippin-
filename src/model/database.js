@@ -25,7 +25,7 @@ db.Itinerary = DataBase.define('itinerary', {
 })
 
 db.Diary = DataBase.define('diary', {
-	thoughts: sequelize.STRING,
+	thoughts: sequelize.BLOB('long'),
 	photo: sequelize.STRING
 })
 
@@ -52,7 +52,7 @@ db.Day.belongsTo(db.Itinerary);
 db.Day.hasMany(db.Diary);
 db.Diary.belongsTo(db.Day);
 
-DataBase.sync({force: false}).then(db => {
+DataBase.sync({force: true}).then(db => {
 	console.log('We synced bruh!')
 })
 

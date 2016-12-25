@@ -18,15 +18,21 @@ router.use(session({
 	saveUninitialized: false
 }));
 
-router.get('/profile', function (request, response) {
-	var user = request.session.user;
-	if (user === undefined) {
-		response.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."));
-	} else {
-		response.render('profile', {
-			user: user
+router.get('/profile', function (req, res) {
+	var user = req.session.user
+	db.Itinerary.findAll({
+		where: {
+			id: req.session.user.id
+		},
+		include: [{
+			model: db.Day
+		}]
+	}).then ((post)=>{
+		res.render('profile', {
+			user: user,
+			everything: post
 		})
-	}
+	})
 })
 
 module.exports = router
