@@ -1,0 +1,51 @@
+html
+	head
+		title wePlannin'
+		link(href='/resources/css/planner.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	body
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
+			ul#nav-mobile.right.hide-on-med-and-down
+				li
+					a(href='/profile') Profile
+
+				li
+					a(href='/logout') Log out
+
+		h1 wePlannin'
+		div.container
+
+
+		div.container
+			form
+				label Name your trip!
+				input#getName(type='text' name='name')
+				input#update3(type='submit' onclick='Materialize.toast("Sick trip Name tho", 4000)')
+
+			form#dayForm
+				label How many days!
+				input#update(type='number' name='days')
+				br
+				div.inputfields
+				input#update2(type='submit' onclick='Materialize.toast("Yaaaasss, days have been planned out fam", 4000)')
+			input#pac-input.controls(type='text', placeholder='Search Box')
+			#map
+
+
+		footer.page-footer.grey.darken-3
+			div.container
+				div.row
+					div.col.l6.s12
+						h5.white-text weTrippin'
+						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+			div.footer-copyright
+				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+
+	script(src="/resources/js/jquery-3.1.1.min.js")
+	script(src="/resources/js/materialize.min.js")
+	script(src="/resources/js/custom.js")
+	script(src="/resources/js/maps.js")
+	script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAelmKfY0T3R_L35-UZ75yI-8QXccnZtp8&callback=initAutocomplete&libraries=places', async='', defer='')

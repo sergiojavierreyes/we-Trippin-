@@ -1,0 +1,37 @@
+html
+	head
+		title weTrippin'!
+		link(href='/resources/css/index.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+		script.
+			$(document).ready(function () {
+				$('#submit').click(function(event) {
+					if($('#email').val().trim().length === 0 || $('#password').val().trim().length === 0) {
+						event.preventDefault();
+						$('#error-message').html("Your username or password is empty.");
+					}
+				});
+			});
+	body
+		main.valign-wrapper
+			span.container
+				h1.title we-Trippin'
+				h3.flow-text Let's start trippin'!
+				form(action='/login' method='post')
+					label E-mail
+					input(type='email', name='email')
+					label Password
+					input(name='password', type='password' required)
+					input(type='submit', value='login' id='submit')
+					br
+					br
+					a(href='/register') Still not Trippin'? Join us!
+
+		h3#error-message= message
+
+
+
+		script(src="/resources/js/jquery-3.1.1.min.js")
+		script(src="/resources/js/materialize.min.js")
+
+

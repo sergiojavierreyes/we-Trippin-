@@ -1,0 +1,73 @@
+html
+	head
+		title My Profile
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+	body
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
+			ul#nav-mobile.right.hide-on-med-and-down
+				li
+					a(href='/logout') Log out
+		div.container
+			h3.center-align Welcome #{user.name} !	
+
+		div.container
+			.row
+				.col.s12
+					ul.tabs
+						li.tab.col.s3
+							a(href='#test1') Plan a new trip
+						li.tab.col.s3
+							a(href='#test2') Diary
+						li.tab.col.s3
+							a(href='#test3') Your trips!
+
+		div.container#test1.col.s12 
+			.col.s12.m7
+				.card
+					.card-image
+						img(src='/resources/media/travel.jpg')
+							|  
+						span.card-title Where to?
+						.card-content
+							p
+							| Let's get to planning!
+							.card-action
+								a(href='/planner') New trip!
+
+		div.container#test2.col.s12 
+			.col.s12.m7
+				.card
+					.card-image
+						img(src='/resources/media/travel.jpg')
+							|  
+						span.card-title TITLE
+						.card-content
+							p
+							| Keep it updated tho!
+							.card-action
+								a(href='/diary') How was it?
+
+		div.container#test3
+			.col.s6.offset-s6
+				span.flow-text
+					each all in everything
+						h3=all.title
+
+						each thing in all.days
+							p=thing.post
+
+		footer.page-footer.grey.darken-3
+			div.container
+				div.row
+					div.col.l6.s12
+						h5.white-text weTrippin'
+						p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+			div.footer-copyright
+				div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+
+
+	script(src="/resources/js/jquery-3.1.1.min.js")
+	script(src="/resources/js/materialize.min.js")
+	script(src="/resources/js/profile.js")

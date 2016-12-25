@@ -1,0 +1,20 @@
+html
+	head
+		Title Join the cool people!
+		link(href='/resources/css/index.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+
+	body
+		main.valign-wrapper
+			span.container
+				h1.title.center-align Trip with us!
+				form(action='/register', method='POST')
+					input(type='text', name='name', placeholder='Name')
+					input(type='email', name='email', placeholder='Email')
+					input#password1(type='password',pattern='.{8,}' title='8 characters minimum', name='password',  placeholder='Password')
+					br 
+					br
+					input(require type='submit', value='Sign Up')
+
+	script(src="/resources/js/jquery-3.1.1.min.js")
+	script(src="/resources/js/materialize.min.js")

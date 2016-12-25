@@ -1,0 +1,52 @@
+html
+	head
+		title wePlannin'
+		link(href='/resources/css/custom.css' type="text/css" rel="stylesheet")
+		link(href='/resources/css/materialize.min.css' type="text/css" rel="stylesheet")
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	body
+		nav.nav-wrapper.grey.darken-3
+			h2.brand-logo weTrippin'
+			ul#nav-mobile.right.hide-on-med-and-down
+				li
+					a(href='/profile') Profile
+				li
+					a(href='/logout') Log out
+
+
+
+		h4.center-align How was it tho?
+	div.container
+		each thing in data
+			h3= thing.title
+			br
+
+			each post in thing.days	
+				ul.siblingstuff.collapsible(data-collapsible='accordion')
+					li
+						div.headerName.collapsible-header
+							= post.header
+						div.collapsible-body 
+							form.formStuff
+								label Any thoughts for this day?
+								input.inputName(type='text' name='name' id=post.id)
+
+								br
+								input.inputFile(type='file', name ='file')
+								
+			input.upload1(type='submit' id=(thing.itineraryId) onclick='Materialize.toast("Diary has been updated bruv", 4000)')
+
+
+	footer.page-footer.grey.darken-3
+		div.container
+			div.row
+				div.col.l6.s12
+					h5.white-text weTrippin'
+					p.grey-text.text-lighten-4 iTrip, youTrip, weTrippin'
+		div.footer-copyright
+			div.container  &copy; 2016 Sergio Reyes Gomez de Liano
+
+	script(src="/resources/js/jquery-3.1.1.min.js")
+	script(src="/resources/js/materialize.min.js")
+	script(src="/resources/js/diaryPage.js")
